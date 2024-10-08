@@ -23,9 +23,8 @@ const RwdChat = () => {
     <div className="flex flex-col h-full pt-10">
       <div ref={chatContainer} className="flex-grow overflow-y-auto">
         {messages.map((m, index) => (
-          <div className={`flex w-full flex-col gap-1 empty:hidden ${m.role === 'user' ? 'items-end' : ''}`}>
+          <div key={index} className={`flex w-full flex-col gap-1 empty:hidden ${m.role === 'user' ? 'items-end' : ''}`}>
             <div
-              key={m.id}
               className={`flex  px-5 py-2.5 ${m.role === "user" ? " bg-blue-50  self-end rounded-3xl max-w-[70%] " : "items-start"}`}
             >
               {m.role !== "user" && (
@@ -43,6 +42,19 @@ const RwdChat = () => {
             </div>
           </div>
         ))}
+      </div>
+      <div className="flex flex-col gap-2 p-4 mb-4">
+        {messages.length === 0 && (
+          ["請告訴我台灣的歷史，限三百字內", "你可以回答什麼問題?", "Tell me a joke."].map((question, index) => (
+            <button
+              key={index}
+              onClick={() => handleInputChange({ target: { value: question } } as React.ChangeEvent<HTMLInputElement>)}
+              className="bg-gray-200 p-2 rounded-lg hover:bg-gray-300"
+            >
+              {question}
+            </button>
+          ))
+        )}
       </div>
       <form onSubmit={handleSubmit} className="mt-4 flex relative">
         <input
