@@ -20,27 +20,27 @@ const RwdChat = () => {
   }, [messages]);
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full pt-10">
       <div ref={chatContainer} className="flex-grow overflow-y-auto">
         {messages.map((m, index) => (
-          <div className={`flex w-full flex-col gap-1 empty:hidden ${m.role ==='user' ? 'items-end':''}`}>
-          <div
-            key={m.id}
-            className={`flex  px-5 py-2.5 ${m.role === "user" ? " bg-blue-50  self-end rounded-3xl max-w-[70%] " : "items-start"}`}
-          >
-            {m.role !== "user" && (
-              <Image
-                className="rounded-full"
-                alt="avatar"
-                width={40}
-                height={40}
-                src="/cs_icon.jpg"
-              />
-            )}
-            <div className={` flex-grow ${m.role !=='user'?'ml-2':''}`}>
-              <p className="text-sm">{m.content}</p>
+          <div className={`flex w-full flex-col gap-1 empty:hidden ${m.role === 'user' ? 'items-end' : ''}`}>
+            <div
+              key={m.id}
+              className={`flex  px-5 py-2.5 ${m.role === "user" ? " bg-blue-50  self-end rounded-3xl max-w-[70%] " : "items-start"}`}
+            >
+              {m.role !== "user" && (
+                <Image
+                  className="rounded-full"
+                  alt="avatar"
+                  width={40}
+                  height={40}
+                  src="/cs_icon.jpg"
+                />
+              )}
+              <div className={` flex-grow ${m.role !== 'user' ? 'ml-2' : ''}`}>
+                <p className="text-sm">{m.content}</p>
+              </div>
             </div>
-          </div>
           </div>
         ))}
       </div>
